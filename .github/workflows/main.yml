@@ -3,7 +3,7 @@ name: Sync to Gitee
 on:
   push:
     branches: [ main ]   # 改成你的默认分支名，可能是 main 或 master
-
+workflow_dispatch:      # ← 加上这行，允许手动触发
 jobs:
   sync:
     runs-on: ubuntu-latest
