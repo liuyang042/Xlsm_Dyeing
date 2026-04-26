@@ -1,0 +1,23 @@
+name: Sync to Gitee
+
+on:
+  push:
+    branches: [ main ]   # 改成你的默认分支名，可能是 main 或 master
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 获取所有历史记录，确保完整镜像
+
+      - name: 推送到 Gitee
+        uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          # 目标仓库地址：https://gitee.com/你的用户名/仓库名.git
+          target_repo_url: "https://gitee.com/liuyang042/Xlsm_Dyeing.git"
+          # Gitee 用户名和私人令牌，通过 Secrets 传递
+          target_repo_username: ${{ secrets.GITEE_USERNAME }}
+          target_repo_token: ${{ secrets.GITEE_TOKEN }}
